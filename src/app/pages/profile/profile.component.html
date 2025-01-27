@@ -1,0 +1,70 @@
+<section class="py-16 bg-gray-100">
+  <div class="container mx-auto px-6 flex flex-col items-center text-center">
+    <!-- Imagen de perfil -->
+    <img src="assets/perfil.jpg" alt="Carlos Leon Rupay" class="w-40 h-40 rounded-full shadow-lg mb-6" height="288" width="240">
+
+
+    <!-- Información principal -->
+    <h2 class="text-4xl font-bold text-gray-900">Carlos Leon Rupay</h2>
+    <p class="text-xl text-gray-600 mt-2">Ingeniero de Software | Frontend Developer</p>
+
+    <!-- Descripción -->
+    <p class="max-w-3xl text-gray-700 mt-4">
+      Egresado de la <strong>Universidad Peruana de Ciencias Aplicadas</strong>, especializado en el desarrollo de aplicaciones web con
+      <strong>Angular y Spring Boot</strong>. Cuento con una sólida base en <strong>Java, JavaScript y TypeScript</strong>, además de experiencia en
+      arquitectura de software, integración de APIs y metodologías ágiles.
+    </p>
+
+    <!-- Íconos de contacto -->
+    <div class="flex gap-6 mt-6">
+      <a href="mailto:carlosleonrupay@gmail.com" target="_blank">
+        <i class="pi pi-envelope text-3xl text-gray-700 hover:text-gray-900 transition"></i>
+      </a>
+      <a href="https://pe.linkedin.com/in/carlosleonrupay" target="_blank">
+        <i class="pi pi-linkedin text-3xl text-gray-700 hover:text-gray-900 transition"></i>
+      </a>
+    </div>
+
+    <section class="py-12 bg-gray-100">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-gray-900 text-center mb-8">Experiencia Profesional</h2>
+
+        <div class="relative border-l-4 border-gray-300 pl-8">
+          @for (trabajo of experiencia; track trabajo) {
+            <div class="mb-8">
+              <div class="relative">
+                <div class="absolute left-[-8px] top-1/2 transform -translate-y-1/2 w-4 h-4 bg-blue-500 rounded-full shadow-xl"></div>
+                <div class="bg-white p-6 rounded-lg shadow-xl mb-4 ml-10">
+                  <h3 class="text-2xl font-semibold text-gray-800 mb-2">{{ trabajo.empresa }}</h3>
+                  <p class="text-lg text-gray-600">{{ trabajo.cargo }}</p>
+                  <p class="text-sm text-gray-500">{{ trabajo.fecha }}</p>
+
+                  <ul class="list-disc list-inside mt-4 space-y-2">
+                    @for (tarea of trabajo.tareas; track tarea) {
+                      <li class="text-gray-700">{{ tarea }}</li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Habilidades y enfoque profesional -->
+    <div class="mt-10 max-w-4xl text-left">
+      <h3 class="text-2xl font-semibold text-gray-900 text-center mt-8 mb-4">🚀 Tecnologías y habilidades</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-gray-800 text-center">
+        <span class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">Angular</span>
+        <span class="bg-gradient-to-r from-green-400 to-teal-500 text-white py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">TypeScript</span>
+        <span class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">JavaScript</span>
+        <span class="bg-gradient-to-r from-gray-700 to-gray-800 text-white py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">Spring Boot</span>
+        <span class="bg-gradient-to-r from-yellow-500 to-red-500 text-white py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">Firebase</span>
+        <span class="bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">Git & GitHub</span>
+        <span class="bg-gradient-to-r from-blue-700 to-blue-900 text-white py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">SQL Server</span>
+        <span class="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-3 px-6 rounded-lg shadow-md transform hover:scale-105 transition-all duration-300">MySQL</span>
+      </div>
+    </div>
+  </div>
+</section>
