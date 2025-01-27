@@ -15,11 +15,9 @@ export class ProjectsComponent {
   projectsList: any[] = [];
 
   constructor(private sanitizer: DomSanitizer) {
-    // Sanitizar los iconos
     this.ICONS['tailwind'] = this.sanitizer.bypassSecurityTrustHtml(ICONS.tailwind);
     this.ICONS['github'] = this.sanitizer.bypassSecurityTrustHtml(ICONS.github);
 
-    // Inicializar projectsList después de asignar ICONS
     this.projectsList = [
       {
         image: 'https://logistica360.pe/wp-content/uploads/2023/04/E-commerce-en-Peru-crecio-30-en-el-2022-alcanzando-US-12.1-mil-millones-.jpg',
