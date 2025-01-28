@@ -22,8 +22,12 @@
       </h3>
 
       <ul class="flex flex-row flex-wrap mt-2 mb-2 gap-2">
-        <li *ngFor="let tag of project.tags" class="flex gap-x-2 rounded-full text-xs py-1 px-2" [ngClass]="tag.class">
-          <div [innerHTML]="tag.icon"></div>
+        <li
+          *ngFor="let tag of project.tags"
+          class="flex gap-x-2 rounded-full text-xs py-1 px-2"
+          [ngClass]="tag.class"
+        >
+          <div [innerHTML]="getSvg(tag.icon)"></div>
           <span>{{ tag.name }}</span>
         </li>
       </ul>
@@ -33,14 +37,21 @@
       </p>
 
       <footer class="flex items-end justify-start mt-4 gap-x-4">
-        <a *ngIf="project.github" [href]="project.github" class="flex items-center gap-x-2 px-4 py-2 bg-gray-800 rounded">
+        <a
+          *ngIf="project.github"
+          [href]="project.github"
+          class="flex items-center gap-x-2 px-4 py-2 bg-gray-800 rounded"
+        >
           <i class="fab fa-github"></i> Code
         </a>
-        <a *ngIf="project.link" [href]="project.link" class="flex items-center gap-x-2 px-4 py-2 bg-orange-500 rounded">
+        <a
+          *ngIf="project.link"
+          [href]="project.link"
+          class="flex items-center gap-x-2 px-4 py-2 bg-orange-500 rounded"
+        >
           <i class="fas fa-external-link-alt"></i> Preview
         </a>
       </footer>
     </div>
   </article>
 </div>
-
