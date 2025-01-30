@@ -1,14 +1,14 @@
-import { Component,Input } from '@angular/core';
-import {Project} from '../../interfaces/Project';
-import {ICONS} from '../../shared/icons/icons';
-import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import { Component, Input } from '@angular/core';
+import { Project } from '../../interfaces/Project';
+import { ICONS } from '../../shared/icons/icons';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-projects',
   standalone: false,
 
   templateUrl: './projects.component.html',
-  styleUrl: './projects.component.css'
+  styleUrl: './projects.component.css',
 })
 export class ProjectsComponent {
   projectsList: any[] = [];
