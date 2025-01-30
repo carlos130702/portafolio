@@ -1,46 +1,67 @@
-<div class="flex flex-col gap-y-16">
-  <article
-    *ngFor="let project of projectsList; let i = index"
-    class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0"
-  >
-    <div class="w-full md:w-1/2">
-      <div
-        class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50"
+<section class="py-16 bg-gray-50 mt-8">
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold text-gray-900 text-center mb-4 animate-fade-in">
+      🚀 Mis Proyectos
+    </h2>
+    <p class="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12 animate-fade-in animate-delay-200">
+      Aquí puedes explorar algunos de los proyectos en los que he trabajado. Cada uno representa un desafío único y una oportunidad para aplicar mis habilidades en <strong class="text-blue-600">desarrollo frontend</strong>, <strong class="text-purple-600">backend</strong> y <strong class="text-orange-500">gestión de bases de datos</strong>.
+    </p>
+
+    <div class="flex flex-col items-center gap-y-16">
+      <article
+        *ngFor="let project of projectsList; let i = index"
+        class="flex flex-col mt-5 items-center gap-8 md:flex-row md:items-start md:gap-12 w-full max-w-5xl p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
       >
-        <img
-          [src]="project.image"
-          [alt]="project.title"
-          class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
-          loading="lazy"
-        />
-      </div>
+        <!-- Imagen del proyecto -->
+        <div class="w-full md:w-1/2 flex justify-center mt-8 md:mt-0 group">
+          <div
+            class="relative flex items-center justify-center overflow-hidden rounded-xl shadow-xl transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:shadow-2xl"
+          >
+            <img
+              [src]="project.image"
+              [alt]="project.title"
+              class="w-full h-60 object-cover object-top transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-500"></div>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 flex flex-col text-center md:text-left">
+          <h3 class="text-3xl font-bold text-gray-900 mb-4">
+            {{ project.title }}
+          </h3>
+
+          <ul class="flex flex-wrap justify-center md:justify-start mt-3 mb-6 gap-2">
+            <li *ngFor="let tag of project.tags" class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium shadow-sm" [ngClass]="tag.class">
+              <div [innerHTML]="getSvg(tag.icon)" class="w-5 h-5"></div>
+              <span>{{ tag.name }}</span>
+            </li>
+          </ul>
+
+          <p class="text-gray-700 mb-6 leading-relaxed">
+            {{ project.description }}
+          </p>
+
+          <div *ngIf="project.features" class="mb-6">
+            <h4 class="text-xl font-semibold text-gray-800 mb-2">✨ Características destacadas:</h4>
+            <ul class="list-disc list-inside text-gray-600">
+              <li *ngFor="let feature of project.features">{{ feature }}</li>
+            </ul>
+          </div>
+
+          <footer class="flex flex-wrap justify-center md:justify-start gap-4">
+            <a *ngIf="project.github" [href]="project.github" target="_blank" class="flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg transition-all hover:bg-gray-800 hover:scale-105">
+              <div [innerHTML]="getSvg('github')" class="w-5 h-5"></div>
+              <span>Ver código</span>
+            </a>
+            <a *ngIf="project.link" [href]="project.link" target="_blank" class="flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-lg transition-all hover:bg-orange-600 hover:scale-105">
+              <i class="fas fa-external-link-alt"></i>
+              <span>Ver demo</span>
+            </a>
+          </footer>
+        </div>
+      </article>
     </div>
-
-    <div class="w-full md:w-1/2 md:max-w-lg">
-      <h3 class="text-2xl font-bold text-orange-500">
-        {{ project.title }}
-      </h3>
-
-      <ul class="flex flex-row flex-wrap mt-2 mb-2 gap-2">
-        <li *ngFor="let tag of project.tags" class="flex gap-x-2 rounded-full text-xs py-1 px-2" [ngClass]="tag.class">
-          <div [innerHTML]="tag.icon"></div>
-          <span>{{ tag.name }}</span>
-        </li>
-      </ul>
-
-      <p class="mt-2 text-gray-700 dark:text-gray-400">
-        {{ project.description }}
-      </p>
-
-      <footer class="flex items-end justify-start mt-4 gap-x-4">
-        <a *ngIf="project.github" [href]="project.github" class="flex items-center gap-x-2 px-4 py-2 bg-gray-800 rounded">
-          <i class="fab fa-github"></i> Code
-        </a>
-        <a *ngIf="project.link" [href]="project.link" class="flex items-center gap-x-2 px-4 py-2 bg-orange-500 rounded">
-          <i class="fas fa-external-link-alt"></i> Preview
-        </a>
-      </footer>
-    </div>
-  </article>
-</div>
-
+  </div>
+</section>

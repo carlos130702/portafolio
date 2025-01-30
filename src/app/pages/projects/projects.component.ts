@@ -11,25 +11,46 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent {
-  ICONS: { [key: string]: SafeHtml } = {};
   projectsList: any[] = [];
 
   constructor(private sanitizer: DomSanitizer) {
-    this.ICONS['tailwind'] = this.sanitizer.bypassSecurityTrustHtml(ICONS.tailwind);
-    this.ICONS['github'] = this.sanitizer.bypassSecurityTrustHtml(ICONS.github);
-
     this.projectsList = [
       {
-        image: 'https://logistica360.pe/wp-content/uploads/2023/04/E-commerce-en-Peru-crecio-30-en-el-2022-alcanzando-US-12.1-mil-millones-.jpg',
+        image:
+          'https://logistica360.pe/wp-content/uploads/2023/04/E-commerce-en-Peru-crecio-30-en-el-2022-alcanzando-US-12.1-mil-millones-.jpg',
         title: 'Ecommerce OpenSource',
         description: 'A powerful platform for online stores.',
         tags: [
-          { name: 'Next.js', class: 'bg-gray-800 text-white', icon: this.ICONS['github'] },
-          { name: 'Tailwind CSS', class: 'bg-blue-500 text-white', icon: this.ICONS['tailwind'] }
+          {
+            name: 'Angular',
+            class: 'bg-red-800 text-white',
+            icon: 'angular',
+          },
+          {
+            name: 'Tailwind CSS',
+            class: 'bg-blue-500 text-white',
+            icon: 'tailwind',
+          },
         ],
         link: 'https://example.com',
         github: 'https://github.com/example/repo',
       },
+      {
+        image: 'assets/pacientes.jpg',
+        title: 'Seguimiento de Pacientes',
+        description: 'Una app de React construida con Zustand para gestionar el estado,además de Tailwind CSS para el diseño y React Hook Form para los formularios.',
+        tags: [
+          { name: 'React.js', class: 'bg-blue-800 text-white', icon: 'react' },
+          { name: 'Tailwind CSS', class: 'bg-blue-500 text-white', icon: 'tailwind' },
+          { name: 'Typescript', class: 'bg-blue-700 text-white', icon: 'typescript' },
+        ],
+        link: 'https://pacient-monitoring.netlify.app/',
+        github: 'https://github.com/carlos130702/pacientes-zustand',
+      },
     ];
+  }
+  getSvg(icon: string): SafeHtml {
+    const svg = ICONS[icon] || ICONS['default'];
+    return this.sanitizer.bypassSecurityTrustHtml(svg);
   }
 }
