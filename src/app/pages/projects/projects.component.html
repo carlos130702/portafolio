@@ -10,7 +10,7 @@
     <!-- Botones de Filtro -->
     <div class="flex justify-center gap-4 mb-8">
       <button
-        class="px-4 py-2 rounded-full text-sm font-medium shadow-sm transition-all duration-200"
+        class="px-4 py-2 rounded-full text-sm font-medium shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md"
         [ngClass]="
           selectedTag === null
             ? 'bg-gray-900 text-white scale-105'
@@ -23,7 +23,7 @@
 
       <button
         *ngFor="let tag of getUniqueTags()"
-        class="px-4 py-2 rounded-full text-sm font-medium shadow-sm transition-all duration-200"
+        class="px-4 py-2 rounded-full text-sm font-medium shadow-sm transition-all duration-200 hover:scale-105 hover:shadow-md"
         [ngClass]="
           selectedTag === tag.key
             ? 'bg-gray-900 text-white scale-105 shadow-lg'
@@ -38,8 +38,8 @@
     <!-- Lista de Proyectos Filtrados -->
     <div class="flex flex-col items-center gap-y-16">
       <article
-        *ngFor="let project of getFilteredProjects()"
-        class="flex flex-col mt-5 items-center gap-8 md:flex-row md:items-start md:gap-12 w-full max-w-5xl p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+        *ngFor="let project of projectsList; let i = index"
+        class="flex flex-col mt-5 items-center gap-8 md:flex-row md:items-start md:gap-12 w-full max-w-5xl p-8 bg-white rounded-xl shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:-translate-y-1"
       >
         <!-- Imagen del Proyecto -->
         <div class="w-full md:w-1/2 flex justify-center mt-8 md:mt-0 group">
