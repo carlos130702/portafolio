@@ -1,39 +1,75 @@
 <section class="py-16 bg-gray-50 mt-8">
   <div class="container mx-auto px-6">
-    <h2 class="text-4xl font-bold text-gray-900 text-center mb-4 animate-fade-in">
+    <h2 class="text-4xl font-bold text-gray-900 text-center mb-4">
       🚀 Mis Proyectos
     </h2>
-    <p class="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12 animate-fade-in animate-delay-200">
-      Aquí puedes explorar algunos de los proyectos en los que he trabajado. Cada uno representa un desafío único y una oportunidad para aplicar mis habilidades en <strong class="text-blue-600">desarrollo frontend</strong>, <strong class="text-purple-600">backend</strong> y <strong class="text-orange-500">gestión de bases de datos</strong>.
+    <p class="text-lg text-gray-600 text-center max-w-2xl mx-auto mb-12">
+      Aquí puedes explorar algunos de los proyectos en los que he trabajado.
     </p>
 
+    <!-- Botones de Filtro -->
+    <div class="flex justify-center gap-4 mb-8">
+      <button
+        class="px-4 py-2 rounded-full text-sm font-medium shadow-sm transition-all duration-200"
+        [ngClass]="
+          selectedTag === null
+            ? 'bg-gray-900 text-white scale-105'
+            : 'bg-gray-200 hover:bg-gray-300'
+        "
+        (click)="selectTag(null)"
+      >
+        Todos
+      </button>
+
+      <button
+        *ngFor="let tag of getUniqueTags()"
+        class="px-4 py-2 rounded-full text-sm font-medium shadow-sm transition-all duration-200"
+        [ngClass]="
+          selectedTag === tag.key
+            ? 'bg-gray-900 text-white scale-105 shadow-lg'
+            : tag.class
+        "
+        (click)="selectTag(tag.key)"
+      >
+        {{ tag.name }}
+      </button>
+    </div>
+
+    <!-- Lista de Proyectos Filtrados -->
     <div class="flex flex-col items-center gap-y-16">
       <article
-        *ngFor="let project of projectsList; let i = index"
+        *ngFor="let project of getFilteredProjects()"
         class="flex flex-col mt-5 items-center gap-8 md:flex-row md:items-start md:gap-12 w-full max-w-5xl p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
       >
-        <!-- Imagen del proyecto -->
+        <!-- Imagen del Proyecto -->
         <div class="w-full md:w-1/2 flex justify-center mt-8 md:mt-0 group">
           <div
-            class="relative flex items-center justify-center overflow-hidden rounded-xl shadow-xl transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:shadow-2xl"
+            class="relative flex items-center justify-center overflow-hidden rounded-xl shadow-xl transition-all duration-500"
           >
             <img
               [src]="project.image"
               [alt]="project.title"
-              class="w-full h-60 object-cover object-top transition-transform duration-500 group-hover:scale-110"
+              class="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-110"
               loading="lazy"
             />
-            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-opacity duration-500"></div>
           </div>
         </div>
 
+        <!-- Información del Proyecto -->
         <div class="w-full md:w-1/2 flex flex-col text-center md:text-left">
           <h3 class="text-3xl font-bold text-gray-900 mb-4">
             {{ project.title }}
           </h3>
 
-          <ul class="flex flex-wrap justify-center md:justify-start mt-3 mb-6 gap-2">
-            <li *ngFor="let tag of project.tags" class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium shadow-sm" [ngClass]="tag.class">
+          <!-- Tags -->
+          <ul
+            class="flex flex-wrap justify-center md:justify-start mt-3 mb-6 gap-2"
+          >
+            <li
+              *ngFor="let tag of project.tags"
+              class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium shadow-sm"
+              [ngClass]="tag.class"
+            >
               <div [innerHTML]="getSvg(tag.icon)" class="w-5 h-5"></div>
               <span>{{ tag.name }}</span>
             </li>
@@ -43,20 +79,22 @@
             {{ project.description }}
           </p>
 
-          <div *ngIf="project.features" class="mb-6">
-            <h4 class="text-xl font-semibold text-gray-800 mb-2">✨ Características destacadas:</h4>
-            <ul class="list-disc list-inside text-gray-600">
-              <li *ngFor="let feature of project.features">{{ feature }}</li>
-            </ul>
-          </div>
-
           <footer class="flex flex-wrap justify-center md:justify-start gap-4">
-            <a *ngIf="project.github" [href]="project.github" target="_blank" class="flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg transition-all hover:bg-gray-800 hover:scale-105">
+            <a
+              *ngIf="project.github"
+              [href]="project.github"
+              target="_blank"
+              class="flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg transition-all hover:bg-gray-800"
+            >
               <div [innerHTML]="getSvg('github')" class="w-5 h-5"></div>
               <span>Ver código</span>
             </a>
-            <a *ngIf="project.link" [href]="project.link" target="_blank" class="flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-lg transition-all hover:bg-orange-600 hover:scale-105">
-              <i class="fas fa-external-link-alt"></i>
+            <a
+              *ngIf="project.link"
+              [href]="project.link"
+              target="_blank"
+              class="flex items-center gap-2 px-6 py-3 bg-orange-500 text-white rounded-lg transition-all hover:bg-orange-600"
+            >
               <span>Ver demo</span>
             </a>
           </footer>
@@ -65,4 +103,3 @@
     </div>
   </div>
 </section>
-
