@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 export class ProfileComponent {
   experiencia = [
     {
-      empresa: 'Bluetab',
+      empresa: 'Nombre de Empresa',
       cargo: 'Practicante Data Developer',
       fecha: '2023 - Actualidad',
       tareas: [
